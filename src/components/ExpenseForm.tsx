@@ -53,7 +53,11 @@ export default function ExpenseForm() {
         }
         
         //Agregar nuevo gasto
-        dispatch({type: 'add-expense', payload: {expense}})
+        if(state.editingId){
+            dispatch({type: 'update-expense', payload: { expense: {id: state.editingId, ...expense}}})
+        } else {
+            dispatch({type: 'add-expense', payload: {expense}})
+        }
     }
 
   return (
