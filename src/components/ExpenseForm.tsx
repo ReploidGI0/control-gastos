@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { DraftExpense, Value } from '../types'
 import { categories } from '../data/categories'
 import DatePicker from 'react-date-picker'
@@ -14,11 +14,17 @@ export default function ExpenseForm() {
         expenseName: '',
         category: '',
         date: new Date()
-
     })
 
     const [error, setError] = useState('')
-    const { dispatch } = useBudget()
+    const { dispatch, state } = useBudget()
+
+    useEffect(() => {
+        if(state.editingId){
+            const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId)[0]
+            setExpense(editingExpense)
+        }
+    }, [state.editingId])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name , value } = e.target 
@@ -71,6 +77,7 @@ export default function ExpenseForm() {
                 className='bg-slate-100 p-2'
                 name='expenseName'
                 onChange={handleChange}
+                value={expense.expenseName} 
             />
         </div>
 
@@ -86,6 +93,7 @@ export default function ExpenseForm() {
                 className='bg-slate-100 p-2'
                 name='amount'
                 onChange={handleChange}
+                value={expense.amount} 
             />
         </div>
 
@@ -99,6 +107,7 @@ export default function ExpenseForm() {
                 className='bg-slate-100 p-2'
                 name='category'
                 onChange={handleChange}
+                value={expense.category}
             >
                 <option value="">-- Seleccione --</option>
                 {categories.map(category => (
@@ -112,7 +121,7 @@ export default function ExpenseForm() {
 
         <div className='flex flex-col gap-2'>
             <label 
-                htmlFor="amount"
+                htmlFor="date"
                 className='text-xl'>
                     Fecha Gasto</label>
                 <DatePicker
