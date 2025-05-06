@@ -25,6 +25,15 @@ Además de utilizar componentes, mediante el uso de operadores ternarios, se est
 ### <a  /> Tipado Estricto con TypeScript
 Se definieron tipos para los props de los componentes y funciones
 
+### <a  /> Validación de Formularios
+Se configuraron los forms de manera que se verifique si el usuario ingresa valores válidos.
+
+### <a  /> Helpers
+Se crearon funciones especificas para el formato de fecha y moneda mostrada en la interfaz (formatCurrency y formatDate)
+
+### <a  /> Context
+El uso de context en el proyecto sirvió para compartir datos y funciones entre distintos componentes sin necesidad de pasar props "manualmente"
+
 ### <a  /> Framework CSS
 Se utilizó Bootstrap para manejar los estilos de la página
 
@@ -54,6 +63,15 @@ In addition to using components, by using ternary operators, you can set whether
 
 ### <a  /> Strict Typing with TypeScript
 Types were defined for component and function props
+
+### <a  /> Form Validation
+Forms have been configured to check whether the user enters valid values.
+
+### <a  /> Helpers
+Specific functions were created for the date and currency format displayed in the interface (formatCurrency and formatDate)
+
+### <a  /> Context
+Using context in this project made it easier to share data and functions between different components without having to pass props "manually"
 
 ### <a  /> Framework CSS
 Bootstrap was used to handle the page styles
